@@ -13,4 +13,4 @@ jobs:
       with:
         server: 66.45.229.178
         username: admin@devstudio.cu.ma
-        password: ${{ secrets.ftp_password }}
+        password: Ktcs!CAN3by2
