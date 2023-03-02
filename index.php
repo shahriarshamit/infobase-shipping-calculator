@@ -306,40 +306,40 @@
                                 <div class="form-group col-sm-12">
                                     <div class="col-sm-3">
                                         <label for="weight" class="col-sm-6 control-label">Weight (KG):</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="cal[weight]" class="form-control" id="weight" placeholder="Weight" value="20" />
-                                    </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cal[weight]" class="form-control" id="weight" placeholder="Weight" value="20" />
+                                        </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="length" class="col-sm-6 control-label">Length (CM):</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="cal[length]" class="form-control" id="length" placeholder="Length" value="4" />
-                                    </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cal[length]" class="form-control" id="length" placeholder="Length" value="4" />
+                                        </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="width" class="col-sm-6 control-label">Width (CM):</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="cal[width]" class="form-control" id="width" placeholder="Width" value="12" />
-                                    </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cal[width]" class="form-control" id="width" placeholder="Width" value="12" />
+                                        </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="height" class="col-sm-6 control-label">Height (CM):</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="cal[height]" class="form-control" id="height" placeholder="Height" value="5" />
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cal[height]" class="form-control" id="height" placeholder="Height" value="5" />
+                                        </div>
                                     </div>
-                                    </div>
-                                    
+
                                 </div>
                                 <div class="form-group col-sm-8">
-                                    
-                                    
+
+
                                     <label for="qty" class="col-sm-2 control-label">Quantity:</label>
                                     <div class="col-sm-3">
                                         <input type="text" name="cal[quantity]" class="form-control" id="quantity" placeholder="Quantity" value="1" />
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 <div class="form-group">
                                     <div class="text-center col-sm-12">
                                         <button type="submit" name="cal[process]" class="btn btn-primary" id="process" value="calculate">
@@ -362,9 +362,9 @@
                                     <img src="assets/images/fedex.png" class="img-responsive "/>
                                 </div>
                                 <button onclick="copyToClipboard('#p1')" data-toggle="tooltip" data-placement="bottom" title="Copy to Clipboard">
-                                <div class="calBody" id="p1">
-                                    <i class="fa fa-jpy"></i><span class="amount-output" id="amount-fedex">0.00</span>
-                                </div>
+                                    <div class="calBody" id="p1">
+                                        <i class="fa fa-jpy"></i><span class="amount-output" id="amount-fedex">0.00</span>
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-4">
@@ -372,9 +372,9 @@
                                     <img src="assets/images/ups-logo.jpeg" class="img-responsive "/>
                                 </div>
                                 <button onclick="copyToClipboard('#p2')">
-                                <div class="calBody" id="p2">
-                                    <i class="fa fa-jpy"></i><span class="amount-output" id="amount-ups">0.00</span>
-                                </div>
+                                    <div class="calBody" id="p2">
+                                        <i class="fa fa-jpy"></i><span class="amount-output" id="amount-ups">0.00</span>
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-4">
@@ -382,12 +382,12 @@
                                     <img src="assets/images/ems-logo.png" class="img-responsive "/>
                                 </div>
                                 <button onclick="copyToClipboard('#p3')">
-                                <div class="calBody" id="p3">
-                                    <i class="fa fa-jpy"></i><span class="amount-output" id="amount-ems">0.00</span>
-                                    
-                                </div>
+                                    <div class="calBody" id="p3">
+                                        <i class="fa fa-jpy"></i><span class="amount-output" id="amount-ems">0.00</span>
+
+                                    </div>
                                 </button>
-                                
+
                             </div>
                         </div>
                         <!--<div class="panel-body">-->
@@ -412,16 +412,16 @@
         <script src="<?= JS; ?>bootstrap.min.js" type="text/javascript"></script>
         <script src="<?= JS; ?>index.js" type="text/javascript"></script>
         <script>
-        $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-            function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-}
+                                    $(function () {
+                                        $('[data-toggle="tooltip"]').tooltip()
+                                    })
+                                    function copyToClipboard(element) {
+                                        var $temp = $("<input>");
+                                        $("body").append($temp);
+                                        $temp.val($(element).text()).select();
+                                        document.execCommand("copy");
+                                        $temp.remove();
+                                    }
 
 
         </script>

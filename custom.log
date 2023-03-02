@@ -443,3 +443,5 @@
 192.168.50.51 - - [28/Feb/2023:22:29:41 +0600] "GET /assets/js/jquery.min.map HTTP/1.1" 304 -
 192.168.50.51 - - [28/Feb/2023:22:29:56 +0600] "POST /process.php HTTP/1.1" 200 208
 192.168.50.51 - - [28/Feb/2023:22:30:51 +0600] "POST /process.php HTTP/1.1" 200 208
+192.168.50.51 - - [02/Mar/2023:17:11:56 +0600] "GET /assets/images/ems-logo.png HTTP/1.1" 200 5523
+192.168.50.51 - - [02/Mar/2023:17:11:56 +0600] "GET /assets/images/ups-logo.jpeg HTTP/1.1" 200 29096

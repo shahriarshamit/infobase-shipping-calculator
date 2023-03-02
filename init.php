@@ -1,6 +1,6 @@
 <?php
 
-define('URL', 'http://infobasehost.com/shipping-calculator/');
+define('URL', 'http://www.shipping-calculator.test/');
 define('ASSETS', URL . 'assets/');
 define('CSS', ASSETS . 'css/');
 define('JS', ASSETS . 'js/');
