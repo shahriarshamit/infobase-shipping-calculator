@@ -1,0 +1,50 @@
+on: push
+  name: FTP Deployment On Push
+  # You may pin to the exact commit or the version.
+  # uses: airvzxf/ftp-deployment-action@9efe025c218094bd451a0cb684d7cb471f4d9d4f
+  uses: airvzxf/ftp-deployment-action@latest
+  with:
+    # FTP Server.
+    server: 66.45.229.178
+    # FTP User.
+    user: admin@devstudio.cu.ma
+    # FTP Password.
+    password: Ktcs!CAN3by2
+    # Local directory.
+    # optional, default is ./
+    local_dir: D:/DOCROOT/infobase-shipping-calculator/
+    # Remote directory.
+    # optional, default is ./
+    remote_dir: /domains/devstudio.cu.ma/public_html/sandbox/infobase-shipping-calculator
+    # Delete all the files inside of the remote directory.
+    delete: # optional, default is false
+    # Times that the lftp will be executed if an error occurred.
+    # optional, default is 10
+    max_retries: 10
+    # Do not create symbolic links.
+    # optional, default is true
+    no_symlinks: true
+    # FTP - Allow SSL encryption.
+    # optional, default is false
+    ftp_ssl_allow: false
+    # FTP - FEAT: Determining what extended features the FTP server supports.
+    # optional, default is false
+    ftp_use_feat: false
+    # FTP - Delay in seconds between NOOP commands when downloading tail of a file.
+    # optional, default is 2
+    ftp_nop_interval: 2
+    # NET - Maximum number of operation without success. 0 unlimited. 1 no retries.
+    # optional, default is 1
+    net_max_retries: 1
+    # NET - Ignore hard errors. When reply 5xx errors or there is too many users.
+    # optional, default is 5
+    net_persist_retries: 
+    # NET - Sets the network protocol timeout.
+    # optional, default is 15s
+    net_timeout: 15s
+    # DNS - 0 no limit trying to lookup an address otherwise try only this number of times.
+    # optional, default is 8
+    dns_max_retries: 8
+    # DNS - Time for DNS queries. Set to "never" to disable.
+    # optional, default is 10s
+    dns_fatal_timeout: 10s
