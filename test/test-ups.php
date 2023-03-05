@@ -4,14 +4,14 @@ require_once __DIR__ . '/../init.php';
 
 $postData = [
     "process" => "calculate",
-    "country" => "BD",
-    "city" => "Dhaka",
-    "zip" => "1200",
-    "quantity" => "1",
-    "weight" => "20",
-    "length" => "4",
-    "width" => "12",
-    "height" => "5"
+    "country" => "US",
+    "city" => "Beaverton",
+    "zip" => "97123",
+    "quantity" => "2",
+    "weight" => "30",
+    "length" => "55",
+    "width" => "55",
+    "height" => "55"
 ];
 
 $request = '{
@@ -63,31 +63,43 @@ $request = '{
         "Code": "08",
         "Description": "UPS Worldwide Expedited"
       },
-      "NumOfPieces": "' . $postData['quantity'] . '",
-      "Package": {
-        "PackagingType": {
-          "Code": "02",
-          "Description": "Packaging"
+      "ShipmentTotalWeight": {
+        "UnitOfMeasurement": {
+          "Code": "LBS",
+          "Description": "Pounds"
         },
-        "Dimensions": {
-          "UnitOfMeasurement": {
-            "Code": "CM",
-            "Description": "Centimeters"
-          },
-          "Length": "' . $postData['length'] . '",
-          "Width": "' . $postData['width'] . '",
-          "Height": "' . $postData['height'] . '"
-        },
-        "PackageWeight": {
-          "UnitOfMeasurement": {
-            "Code": "KGS",
-            "Description": "KGS"
-          },
-          "Weight": "' . $postData['weight'] . '"
-        },
-        "OversizeIndicator": "X",
-        "MinimumBillableWeightIndicator": "X"
+        "Weight": "' . ( $postData['weight'] * $postData['quantity'] ) . '"
       },
+      "NumOfPieces": "' . $postData['quantity'] . '",
+      "Package": [';
+for ($a = 0; $a < $postData['quantity']; $a++) {
+    $request .= '{
+          "PackagingType": {
+            "Code": "02",
+            "Description": "Packaging"
+          },
+          "Dimensions": {
+            "UnitOfMeasurement": {
+              "Code": "CM",
+              "Description": "Centimeters"
+            },
+            "Length": "' . $postData['length'] . '",
+            "Width": "' . $postData['width'] . '",
+            "Height": "' . $postData['height'] . '"
+          },
+          "PackageWeight": {
+            "UnitOfMeasurement": {
+              "Code": "KGS",
+              "Description": "KGS"
+            },
+            "Weight": "' . $postData['weight'] . '"
+          },
+          "OversizeIndicator": "X",
+          "MinimumBillableWeightIndicator": "X"
+        }';
+    $request .= (($a < $postData['quantity']) ? ',' : '' );
+}
+$request .= '],
       "ShipmentRatingOptions": {
         "NegotiatedRatesIndicator": "Y"
       }

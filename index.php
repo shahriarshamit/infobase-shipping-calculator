@@ -10,6 +10,8 @@
 
         <title>Shipping Calculator</title>
 
+        <link href="<?= ICONS; ?>/favicon.ico" rel="shortcut icon" />
+
         <link href="<?= CSS; ?>jquery-ui.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= CSS; ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= CSS; ?>font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -53,7 +55,7 @@
                                             <option value="AZ">Azerbaijan</option>
                                             <option value="BS">Bahamas</option>
                                             <option value="BH">Bahrain</option>
-                                            <option value="BD" selected>Bangladesh</option>
+                                            <option value="BD">Bangladesh</option>
                                             <option value="BB">Barbados</option>
                                             <option value="BY">Belarus</option>
                                             <option value="BE">Belgium</option>
@@ -273,7 +275,7 @@
                                             <option value="UA">Ukraine</option>
                                             <option value="AE">United Arab Emirates</option>
                                             <option value="GB">United Kingdom</option>
-                                            <option value="US">United States</option>
+                                            <option value="US" selected>United States</option>
                                             <option value="UM">United States Minor Outlying Islands</option>
                                             <option value="UY">Uruguay</option>
                                             <option value="UZ">Uzbekistan</option>
@@ -293,53 +295,49 @@
                                 <div class="form-group col-sm-3">
                                     <label for="city" class="col-sm-3 control-label">City:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="cal[city]" class="form-control" id="city" placeholder="City" value="Dhaka" />
+                                        <input type="text" name="cal[city]" class="form-control" id="city" placeholder="City" value="Beaverton" />
                                     </div>
 
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label for="zip" class="col-sm-5 control-label">Postal Code:</label>
                                     <div class="col-sm-7">
-                                        <input type="text" name="cal[zip]" class="form-control" id="zip" placeholder="Postal code" value="1200" />
+                                        <input type="text" name="cal[zip]" class="form-control" id="zip" placeholder="Postal code" value="97123" />
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <div class="col-sm-3">
                                         <label for="weight" class="col-sm-6 control-label">Weight (KG):</label>
                                         <div class="col-sm-6">
-                                            <input type="text" name="cal[weight]" class="form-control" id="weight" placeholder="Weight" value="20" />
+                                            <input type="text" name="cal[weight]" class="form-control" id="weight" placeholder="Weight" value="30" />
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="length" class="col-sm-6 control-label">Length (CM):</label>
                                         <div class="col-sm-6">
-                                            <input type="text" name="cal[length]" class="form-control" id="length" placeholder="Length" value="4" />
+                                            <input type="text" name="cal[length]" class="form-control" id="length" placeholder="Length" value="55" />
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="width" class="col-sm-6 control-label">Width (CM):</label>
                                         <div class="col-sm-6">
-                                            <input type="text" name="cal[width]" class="form-control" id="width" placeholder="Width" value="12" />
+                                            <input type="text" name="cal[width]" class="form-control" id="width" placeholder="Width" value="55" />
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="height" class="col-sm-6 control-label">Height (CM):</label>
                                         <div class="col-sm-6">
-                                            <input type="text" name="cal[height]" class="form-control" id="height" placeholder="Height" value="5" />
+                                            <input type="text" name="cal[height]" class="form-control" id="height" placeholder="Height" value="55" />
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="form-group col-sm-8">
-
-
                                     <label for="qty" class="col-sm-2 control-label">Quantity:</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="cal[quantity]" class="form-control" id="quantity" placeholder="Quantity" value="1" />
+                                        <input type="text" name="cal[quantity]" class="form-control" id="quantity" placeholder="Quantity" value="2" />
                                     </div>
                                 </div>
-
-
                                 <div class="form-group">
                                     <div class="text-center col-sm-12">
                                         <button type="submit" name="cal[process]" class="btn btn-primary" id="process" value="calculate">
@@ -356,52 +354,7 @@
                         <div class="panel-heading">
                             Comparative Results:
                         </div>
-                        <div class="calMain">
-                            <div class="col-sm-4">
-                                <div class="calHead">
-                                    <img src="assets/images/fedex.png" class="img-responsive "/>
-                                </div>
-                                <button onclick="copyToClipboard('#p1')" data-toggle="tooltip" data-placement="bottom" title="Copy to Clipboard">
-                                    <div class="calBody" id="p1">
-                                        <i class="fa fa-jpy"></i><span class="amount-output" id="amount-fedex">0.00</span>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="calHead">
-                                    <img src="assets/images/ups-logo.jpeg" class="img-responsive "/>
-                                </div>
-                                <button onclick="copyToClipboard('#p2')">
-                                    <div class="calBody" id="p2">
-                                        <i class="fa fa-jpy"></i><span class="amount-output" id="amount-ups">0.00</span>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="calHead">
-                                    <img src="assets/images/ems-logo.png" class="img-responsive "/>
-                                </div>
-                                <button onclick="copyToClipboard('#p3')">
-                                    <div class="calBody" id="p3">
-                                        <i class="fa fa-jpy"></i><span class="amount-output" id="amount-ems">0.00</span>
-
-                                    </div>
-                                </button>
-
-                            </div>
-                        </div>
-                        <!--<div class="panel-body">-->
-                        <!--    <table class="table table-condensed">-->
-                        <!--        <thead>-->
-                        <!--            <tr><th>Shipping Method</th><th>Result Cost</th></tr>-->
-                        <!--        </thead>-->
-                        <!--        <tbody>-->
-                        <!--            <tr><td>FedEx</td><td><i class="fa fa-jpy"></i><span class="amount-output" id="amount-fedex">0.00</span></td></tr>-->
-                        <!--            <tr><td>UPS</td><td><i class="fa fa-jpy"></i><span class="amount-output" id="amount-ups">0.00</span></td></tr>-->
-                        <!--            <tr><td>EMS</td><td><i class="fa fa-jpy"></i><span class="amount-output" id="amount-ems">0.00</span></td></tr>-->
-                        <!--        </tbody>-->
-                        <!--    </table>-->
-                        <!--</div>-->
+                        <div class="calMain" id="result-html"></div>
                     </div>
                 </div>
             </div>
@@ -411,19 +364,5 @@
         <script src="<?= JS; ?>jquery-ui.min.js" type="text/javascript"></script>
         <script src="<?= JS; ?>bootstrap.min.js" type="text/javascript"></script>
         <script src="<?= JS; ?>index.js" type="text/javascript"></script>
-        <script>
-                                    $(function () {
-                                        $('[data-toggle="tooltip"]').tooltip()
-                                    })
-                                    function copyToClipboard(element) {
-                                        var $temp = $("<input>");
-                                        $("body").append($temp);
-                                        $temp.val($(element).text()).select();
-                                        document.execCommand("copy");
-                                        $temp.remove();
-                                    }
-
-
-        </script>
     </body>
 </html>

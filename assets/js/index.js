@@ -1,4 +1,8 @@
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 $(document).on('click', '#process', function (event) {
     event.preventDefault();
     $.ajax({
@@ -18,21 +22,25 @@ $(document).on('click', '#process', function (event) {
             }
         },
         beforeSend: function (xhr, settings) {
-            $('#amount-fedex').html('0.00');
-            $('#amount-ups').html('0.00');
-            $('#amount-ems').html('0.00');
+            $('#result-html').html('');
             $('#cover-spin').show(0);
         },
         success: function (response, textStatus, xhr) {
-            var output = JSON.parse(response);
-            
-            $('#amount-fedex').html(output.fedex.amount);
-            $('#amount-ups').html(output.ups.amount);
-            $('#amount-ems').html(output.ems.amount);
+            var result = JSON.parse(response);
+            $('#result-html').html(result.output);
             $('#cover-spin').hide(0);
         },
-        error: function() {
+        error: function () {
             $('#cover-spin').hide(0);
         }
     });
 });
+
+function copyToClipboard(element) {
+    console.log(element);
+//    var $temp = $("<input>");
+//    $("body").append($temp);
+//    $temp.val($(element).text()).select();
+//    document.execCommand("copy");
+//    $temp.remove();
+}

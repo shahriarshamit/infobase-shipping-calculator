@@ -1,7 +1,19 @@
 
-.calBody {
+.calHead {
     text-align: center;
-    padding: 10px;
+    font-weight: 500;
+}
+
+.calHead img{
+    width: 100%;
+    height: 250px;
+    margin-top: 10px;
+}
+
+.calButton{
+    width: 100%;
+    height: 60px;
+    text-align: center;
     font-size: 25px;
 }
 
@@ -49,16 +61,4 @@
     to {
         transform:rotate(360deg);
     }
-}
-
-.calHead img{
-    width: 100%;
-    height: 150px;
-    margin-top: 10px;
-}
-
-.calMain button{
-    margin: 10px auto 0;
-    text-align: center;
-    width: 100%;
 }

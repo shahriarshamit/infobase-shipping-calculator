@@ -4,15 +4,15 @@ require_once __DIR__ . '/../init.php';
 
 $postData = [
     "process" => "calculate",
-    "country" => "BD",
-    "city" => "Dhaka",
-    "zip" => "1200",
+    "country" => "US",
+    "city" => "Beaverton",
+    "zip" => "97123",
     "shipping" => date('Y-m-d'),
-    "quantity" => "1",
-    "weight" => "20",
-    "length" => "4",
-    "width" => "12",
-    "height" => "5"
+    "quantity" => "2",
+    "weight" => "30",
+    "length" => "55",
+    "width" => "55",
+    "height" => "55"
 ];
 
 $request = '{
@@ -34,7 +34,7 @@ $request = '{
         "countryCode": "' . $postData['country'] . '"
       }
     },
-    "shipTimestamp": "' . date('Y-m-d') . '",
+    "shipTimestamp": "' . $postData['shipping'] . '",
     "pickupType": "USE_SCHEDULED_PICKUP",
     "packagingType": "YOUR_PACKAGING",
     "shippingChargesPayment": {
@@ -50,7 +50,7 @@ $request = '{
       }
     },
     "rateRequestType": [
-      "PREFERRED", "ACCOUNT"
+      "ACCOUNT"
     ],
     "preferredCurrency": "JYE",
     "requestedPackageLineItems": [
@@ -73,57 +73,7 @@ $request = '{
           "units": "CM"
         }
       }
-    ],
-    "customsClearanceDetail": {
-      "commodities": [
-        {
-          "name": "DOCUMENTS",
-          "numberOfPieces": ' . $postData['quantity'] . ',
-          "description": "CLOTHING",
-          "countryOfManufacture": "",
-          "harmonizedCode": "",
-          "harmonizedCodeDescription": "",
-          "itemDescriptionForClearance": "",
-          "weight": {
-            "units": "KG",
-            "value": ' . $postData['weight'] . '
-          },
-          "quantity": ' . $postData['quantity'] . ',
-          "quantityUnits": "",
-          "unitPrice": {
-            "currency": "JYE",
-            "amount": null,
-            "currencySymbol": ""
-          },
-          "unitsOfMeasures": [
-            {
-              "category": "",
-              "code": "",
-              "name": "",
-              "value": "",
-              "originalCode": ""
-            }
-          ],
-          "excises": [
-            {
-              "values": [
-                ""
-              ],
-              "code": ""
-            }
-          ],
-          "customsValue": {
-            "currency": "JYE",
-            "amount": 1,
-            "currencySymbol": ""
-          },
-          "exportLicenseNumber": "",
-          "partNumber": "",
-          "exportLicenseExpirationDate": "",
-          "getcIMarksAndNumbers": ""
-        }
-      ]
-    }
+    ]
   }
 }';
 

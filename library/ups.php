@@ -62,31 +62,43 @@ function processUps($postData = []) {
               "Code": "08",
               "Description": "UPS Worldwide Expedited"
             },
-            "NumOfPieces": "' . $postData['quantity'] . '",
-            "Package": {
-              "PackagingType": {
-                "Code": "02",
-                "Description": "Packaging"
+            "ShipmentTotalWeight": {
+              "UnitOfMeasurement": {
+                "Code": "LBS",
+                "Description": "Pounds"
               },
-              "Dimensions": {
-                "UnitOfMeasurement": {
-                  "Code": "CM",
-                  "Description": "Centimeters"
-                },
-                "Length": "' . $postData['length'] . '",
-                "Width": "' . $postData['width'] . '",
-                "Height": "' . $postData['height'] . '"
-              },
-              "PackageWeight": {
-                "UnitOfMeasurement": {
-                  "Code": "KGS",
-                  "Description": "KGS"
-                },
-                "Weight": "' . $postData['weight'] . '"
-              },
-              "OversizeIndicator": "X",
-              "MinimumBillableWeightIndicator": "X"
+              "Weight": "' . ( $postData['weight'] * $postData['quantity'] ) . '"
             },
+            "NumOfPieces": "' . $postData['quantity'] . '",
+            "Package": [';
+    for ($a = 0; $a < $postData['quantity']; $a++) {
+        $request .= '{
+                "PackagingType": {
+                  "Code": "02",
+                  "Description": "Packaging"
+                },
+                "Dimensions": {
+                  "UnitOfMeasurement": {
+                    "Code": "CM",
+                    "Description": "Centimeters"
+                  },
+                  "Length": "' . $postData['length'] . '",
+                  "Width": "' . $postData['width'] . '",
+                  "Height": "' . $postData['height'] . '"
+                },
+                "PackageWeight": {
+                  "UnitOfMeasurement": {
+                    "Code": "KGS",
+                    "Description": "KGS"
+                  },
+                  "Weight": "' . $postData['weight'] . '"
+                },
+                "OversizeIndicator": "X",
+                "MinimumBillableWeightIndicator": "X"
+              }';
+        $request .= (($a < $postData['quantity']) ? ',' : '' );
+    }
+    $request .= '],
             "ShipmentRatingOptions": {
               "NegotiatedRatesIndicator": "Y"
             }
@@ -103,11 +115,11 @@ function processUps($postData = []) {
 
     $output = curlRequest($url, $header, $request);
     if ($output['status'] === 200) {
-        $ratedShipment = $output['response']->RateResponse->RatedShipment;
-        $amount = number_format($ratedShipment->TotalCharges->MonetaryValue, 2, ".", ",");
-        $return = ['status' => 'success', 'amount' => $amount, 'message' => ''];
+        $ratedShipment = $output['response']->RateResponse;
+        $ratePanel = resultPanel('ups', 'UPS Worldwide Expedited', $ratedShipment->RatedShipment->TotalCharges->MonetaryValue);
+        $return = ['status' => 'success', 'result' => $ratePanel, 'message' => ''];
     } else {
-        $return = ['status' => 'exception', 'amount' => '0.00', 'message' => $output['response']];
+        $return = ['status' => 'exception', 'result' => '', 'message' => $output['response']];
     }
     return $return;
 }

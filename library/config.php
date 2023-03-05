@@ -10,7 +10,7 @@ $config = [
         'city' => 'SAITAMA',
         'country' => 'JAPAN',
         'country_code' => 'JP',
-        'postal_code' => '3480071',
+        'postal_code' => '3491134',
         'phone' => '08041952608',
         'email' => 'admin@buynowjapan.com'
     ],
