@@ -19,13 +19,15 @@ function curlRequest($url = '', $header = [], $request = []) {
 }
 
 function resultPanel($service = '', $packageName = '', $packagePrice = '') {
-    $panel = '<div class="col-sm-4">';
+    $panel = '<div class="panel panel-default col-sm-4">';
     $panel .= '<div class="calHead">';
     $panel .= '<img src="' . IMAGES . 'logo-' . $service . '.png" class="img-responsive" />';
     $panel .= '<h5>' . $packageName . '</h5>';
     $panel .= '</div>';
-    $panel .= '<button class="calButton" onclick="copyToClipboard(this)" data-value="' . number_format((float) $packagePrice, 2, '.', ',') . '" data-toggle="tooltip" data-placement="bottom" title="Copy to Clipboard">';
+    $panel .= '<button class="calButton" onclick="copyToClipboard(this)" data-value="' . number_format((float) $packagePrice, 2, '.', ',') . '">';
+    $panel .= '<div class="calBody" data-toggle="tooltip" data-placement="bottom" title="Copy to Clipboard">';
     $panel .= '<i class="fa fa-jpy"></i>&nbsp;' . number_format((float) $packagePrice, 2, '.', ',');
+    $panel .= '</div>';
     $panel .= '</button>';
     $panel .= '</div>';
     return $panel;

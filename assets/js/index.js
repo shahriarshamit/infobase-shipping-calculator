@@ -1,8 +1,4 @@
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-});
-
 $(document).on('click', '#process', function (event) {
     event.preventDefault();
     $.ajax({
@@ -29,6 +25,7 @@ $(document).on('click', '#process', function (event) {
             var result = JSON.parse(response);
             $('#result-html').html(result.output);
             $('#cover-spin').hide(0);
+            $('[data-toggle="tooltip"]').tooltip();
         },
         error: function () {
             $('#cover-spin').hide(0);
@@ -37,10 +34,9 @@ $(document).on('click', '#process', function (event) {
 });
 
 function copyToClipboard(element) {
-    console.log(element);
-//    var $temp = $("<input>");
-//    $("body").append($temp);
-//    $temp.val($(element).text()).select();
-//    document.execCommand("copy");
-//    $temp.remove();
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).attr('data-value')).select();
+    document.execCommand("copy");
+    $temp.remove();
 }
