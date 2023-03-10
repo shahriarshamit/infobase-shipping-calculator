@@ -14,7 +14,26 @@ $postData = [
     "height" => "55"
 ];
 
-$request = '{
+$ups_header = [
+    'accept' => 'application/json',
+    'Authorization' => 'Basic dU5iR0EzdHliVVFod3ZJbzNhbkFPejZEWjRoSXVlR1dtNWpQTjRTT2tORldBQWRTOjB5bjV1Z1pwakFvcUxGemF6OWp6dERkWXRDbVdVeHVNb2FvSzRvdHg5VmFnMTV5eVlXMHNkZ0JWQWxPSHJFR1I='
+];
+$ups_payload = [
+    'grant_type' => 'client_credentials',
+];
+$auth = new Auth('ups', 'production', 'POST', $config);
+$ups_auth = $auth->makeRequest($ups_header, $ups_payload);
+
+$ups_services = [
+    ['07', 'UPS Worldwide Express'],
+    ['08', 'UPS Worldwide Expedited'],
+    ['11', 'UPS Standard'],
+    ['54', 'UPS Worldwide Express Plus'],
+    ['65', 'UPS Saver'],
+];
+
+for ($a = 0; $a < count($ups_services); $a++) {
+    $request = '{
   "RateRequest": {
     "Request": {
       "TransactionReference": {
@@ -60,8 +79,8 @@ $request = '{
         }
       },
       "Service": {
-        "Code": "08",
-        "Description": "UPS Worldwide Expedited"
+        "Code": "' . $ups_services[$a][0] . '",
+        "Description": "' . $ups_services[$a][0] . '"
       },
       "ShipmentTotalWeight": {
         "UnitOfMeasurement": {
@@ -72,8 +91,8 @@ $request = '{
       },
       "NumOfPieces": "' . $postData['quantity'] . '",
       "Package": [';
-for ($a = 0; $a < $postData['quantity']; $a++) {
-    $request .= '{
+    for ($b = 0; $b < $postData['quantity']; $b++) {
+        $request .= '{
           "PackagingType": {
             "Code": "02",
             "Description": "Packaging"
@@ -97,9 +116,9 @@ for ($a = 0; $a < $postData['quantity']; $a++) {
           "OversizeIndicator": "X",
           "MinimumBillableWeightIndicator": "X"
         }';
-    $request .= (($a < $postData['quantity']) ? ',' : '' );
-}
-$request .= '],
+        $request .= (($b < $postData['quantity']) ? ',' : '' );
+    }
+    $request .= '],
       "ShipmentRatingOptions": {
         "NegotiatedRatesIndicator": "Y"
       }
@@ -107,34 +126,28 @@ $request .= '],
   }
 }';
 
-$ups_header = [
-    'accept' => 'application/json',
-    'Authorization' => 'Basic dU5iR0EzdHliVVFod3ZJbzNhbkFPejZEWjRoSXVlR1dtNWpQTjRTT2tORldBQWRTOjB5bjV1Z1pwakFvcUxGemF6OWp6dERkWXRDbVdVeHVNb2FvSzRvdHg5VmFnMTV5eVlXMHNkZ0JWQWxPSHJFR1I='
-];
-$ups_payload = [
-    'grant_type' => 'client_credentials',
-];
-$auth = new Auth('ups', 'production', 'POST', $config);
-$ups_auth = $auth->makeRequest($ups_header, $ups_payload);
-
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, $config['ups']['sandbox']['request']);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($curl, CURLOPT_TIMEOUT, 300);
-curl_setopt($curl, CURLOPT_ENCODING, "");
-curl_setopt($curl, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $ups_auth['access_token'],
-    'Content-Type: application/json',
-    'accept: application/json',
-    'transactionSrc: testing'
-]);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-curl_setopt($curl, CURLOPT_POST, TRUE);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
-$response = json_decode(curl_exec($curl));
-$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-testData($response);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $config['ups']['sandbox']['request']);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 300);
+    curl_setopt($curl, CURLOPT_ENCODING, "");
+    curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $ups_auth['access_token'],
+        'Content-Type: application/json',
+        'accept: application/json',
+        'transactionSrc: testing'
+    ]);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
+    $response = json_decode(curl_exec($curl));
+    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    
+    testData($response, false, false);
+    
+    //$ratedShipment = $output['response']->RateResponse;
+    //echo 'ups' . ':' . $ups_services[$a][0] . ' => ' . $ratedShipment->RatedShipment->TotalCharges->MonetaryValue;
+}
 
 //$total_charge = 0.00;
 

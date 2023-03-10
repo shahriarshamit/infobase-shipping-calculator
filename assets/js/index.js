@@ -1,4 +1,49 @@
 
+$(document).on('keyup', '#zip', function () {
+    var zip_in = $(this);
+    var zip_box = $('#zip');
+    var cou = $('#country').val();
+    if (zip_in.val().length < 4) {
+        zip_box.removeClass('error success');
+    } else if (zip_in.val().length > 8) {
+        zip_box.addClass('error').removeClass('success');
+    } else if (cou === 'GB') {
+        $.ajax({
+            url: "http://api.postcodes.io/postcodes/" + zip_in.val(),
+            cache: false,
+            dataType: "json",
+            type: "GET",
+            success: function (results, success) {
+                jQuery("#city").val(results.result.region);
+                jQuery("#state").replaceWith('<input class="form-control" type="text" name="state" id="txtCity" />');
+                jQuery("#txtCity").val(results.result.country);
+                zip_box.addClass('success').removeClass('error');
+            },
+            error: function (results, success) {
+                zip_box.removeClass('success').addClass('error');
+            }
+        });
+    } else if ((zip_in.val().length === 4) || (zip_in.val().length === 5)) {
+        $.ajax({
+            url: "https://api.zippopotam.us/" + cou + '/' + zip_in.val(),
+            cache: false,
+            dataType: "json",
+            type: "GET",
+            success: function (result, success) {
+                places = result['places'][0];
+                jQuery("#city").val(places['place name']);
+                jQuery("#state").replaceWith('<input class="form-control" type="text" name="state" id="txtCity" />');
+                jQuery("#txtCity").val(places['state']);
+                jQuery("#state_field .select2").hide();
+                zip_box.addClass('success').removeClass('error');
+            },
+            error: function (result, success) {
+                zip_box.removeClass('success').addClass('error');
+            }
+        });
+    }
+});
+
 $(document).on('click', '#process', function (event) {
     event.preventDefault();
     $.ajax({
