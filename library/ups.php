@@ -5,14 +5,13 @@ function processUps($postData = []) {
 
     $ups_header = [
         'accept' => 'application/json',
-        'Authorization' => 'Basic dU5iR0EzdHliVVFod3ZJbzNhbkFPejZEWjRoSXVlR1dtNWpQTjRTT2tORldBQWRTOjB5bjV1Z1pwakFvcUxGemF6OWp6dERkWXRDbVdVeHVNb2FvSzRvdHg5VmFnMTV5eVlXMHNkZ0JWQWxPSHJFR1I='
+        'Authorization' => 'Basic ' . $config['ups']['production']['accounts'][$postData['ups']]['account_token']
     ];
     $ups_payload = [
         'grant_type' => 'client_credentials',
     ];
     $auth = new Auth('ups', 'production', 'POST', $config);
     $ups_auth = $auth->makeRequest($ups_header, $ups_payload);
-
     $ups_services = [
         ['07', 'UPS Worldwide Express'],
         ['08', 'UPS Worldwide Expedited'],
@@ -33,7 +32,7 @@ function processUps($postData = []) {
           "Shipment": {
             "Shipper": {
               "Name": "' . $config['sender']['company'] . '",
-              "ShipperNumber": "' . $config['ups']['production']['account_number'] . '",
+              "ShipperNumber": "' . $config['ups']['production']['accounts'][$postData['ups']]['account_number'] . '",
               "Address": {
                 "AddressLine": [],
                 "City": "' . $config['sender']['city'] . '",
@@ -63,7 +62,7 @@ function processUps($postData = []) {
               "ShipmentCharge": {
                 "Type": "01",
                 "BillShipper": {
-                  "AccountNumber": "' . $config['ups']['production']['account_number'] . '"
+                  "AccountNumber": "' . $config['ups']['production']['accounts'][$postData['ups']]['account_number'] . '"
                 }
               }
             },

@@ -11,12 +11,13 @@ $postData = [
     "weight" => "30",
     "length" => "55",
     "width" => "55",
-    "height" => "55"
+    "height" => "55",
+    "ups" => "1"
 ];
 
 $ups_header = [
     'accept' => 'application/json',
-    'Authorization' => 'Basic dU5iR0EzdHliVVFod3ZJbzNhbkFPejZEWjRoSXVlR1dtNWpQTjRTT2tORldBQWRTOjB5bjV1Z1pwakFvcUxGemF6OWp6dERkWXRDbVdVeHVNb2FvSzRvdHg5VmFnMTV5eVlXMHNkZ0JWQWxPSHJFR1I='
+    'Authorization' => 'Basic ' . $config['ups']['production']['accounts'][$postData['ups']]['account_token']
 ];
 $ups_payload = [
     'grant_type' => 'client_credentials',
@@ -44,7 +45,7 @@ for ($a = 0; $a < count($ups_services); $a++) {
     "Shipment": {
       "Shipper": {
         "Name": "' . $config['sender']['company'] . '",
-        "ShipperNumber": "' . $config['ups']['production']['account_number'] . '",
+        "ShipperNumber": "' . $config['ups']['production']['accounts'][$postData['ups']]['account_number'] . '",
         "Address": {
           "AddressLine": [],
           "City": "' . $config['sender']['city'] . '",
@@ -74,7 +75,7 @@ for ($a = 0; $a < count($ups_services); $a++) {
         "ShipmentCharge": {
           "Type": "01",
           "BillShipper": {
-            "AccountNumber": "' . $config['ups']['production']['account_number'] . '"
+            "AccountNumber": "' . $config['ups']['production']['accounts'][$postData['ups']]['account_number'] . '"
           }
         }
       },
@@ -142,9 +143,9 @@ for ($a = 0; $a < count($ups_services); $a++) {
     curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
     $response = json_decode(curl_exec($curl));
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    
+
     testData($response, false, false);
-    
+
     //$ratedShipment = $output['response']->RateResponse;
     //echo 'ups' . ':' . $ups_services[$a][0] . ' => ' . $ratedShipment->RatedShipment->TotalCharges->MonetaryValue;
 }

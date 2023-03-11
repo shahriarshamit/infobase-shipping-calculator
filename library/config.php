@@ -42,16 +42,50 @@ $config = [
         'sandbox' => [
             'auth' => 'https://wwwcie.ups.com/security/v1/oauth/token',
             'request' => 'https://wwwcie.ups.com/api/rating/v1/Rate',
-            'api_key' => 'uNbGA3tybUQhwvIo3anAOz6DZ4hIueGWm5jPN4SOkNFWAAdS',
-            'api_secret' => '0yn5ugZpjAoqLFzaz9jztDdYtCmWUxuMoaoK4otx9Vag15yyYW0sdgBVAlOHrEGR',
-            'account_number' => 'E974Y8'
+            'accounts' => [
+                [
+                    'account_number' => 'E974Y8',
+                    'account_token' => 'dU5iR0EzdHliVVFod3ZJbzNhbkFPejZEWjRoSXVlR1dtNWpQTjRTT2tORldBQWRTOjB5bjV1Z1pwakFvcUxGemF6OWp6dERkWXRDbVdVeHVNb2FvSzRvdHg5VmFnMTV5eVlXMHNkZ0JWQWxPSHJFR1I=',
+                    'api_key' => 'uNbGA3tybUQhwvIo3anAOz6DZ4hIueGWm5jPN4SOkNFWAAdS',
+                    'api_secret' => '0yn5ugZpjAoqLFzaz9jztDdYtCmWUxuMoaoK4otx9Vag15yyYW0sdgBVAlOHrEGR'
+                ],
+                [
+                    'account_number' => '7W684R',
+                    'account_token' => 'Y0tBRlZkUzJRSlNzWmxTRWIwelpaNTF4SWtFRTJZVzFBTUw1d0NMZ3dBZXFiSXpZOmhRVXZ1QXlvOVBlc3o1ejVFcUxzc3d6M2hZbG04M3hMU0NPTkdQWG9FcnhPc2RjTHptajFRdDVGbFBuUXlLdjQ=',
+                    'api_key' => 'cKAFVdS2QJSsZlSEb0zZZ51xIkEE2YW1AML5wCLgwAeqbIzY',
+                    'api_secret' => 'hQUvuAyo9Pesz5z5EqLsswz3hYlm83xLSCONGPXoErxOsdcLzmj1Qt5FlPnQyKv4'
+                ],
+                [
+                    'account_number' => 'R2439A',
+                    'account_token' => '',
+                    'api_key' => '',
+                    'api_secret' => ''
+                ]
+            ]
         ],
         'production' => [
             'auth' => 'https://onlinetools.ups.com/security/v1/oauth/token',
             'request' => 'https://onlinetools.ups.com/api/rating/v1/Rate',
-            'api_key' => 'uNbGA3tybUQhwvIo3anAOz6DZ4hIueGWm5jPN4SOkNFWAAdS',
-            'api_secret' => '0yn5ugZpjAoqLFzaz9jztDdYtCmWUxuMoaoK4otx9Vag15yyYW0sdgBVAlOHrEGR',
-            'account_number' => 'E974Y8'
+            'accounts' => [
+                [
+                    'account_number' => 'E974Y8',
+                    'account_token' => 'dU5iR0EzdHliVVFod3ZJbzNhbkFPejZEWjRoSXVlR1dtNWpQTjRTT2tORldBQWRTOjB5bjV1Z1pwakFvcUxGemF6OWp6dERkWXRDbVdVeHVNb2FvSzRvdHg5VmFnMTV5eVlXMHNkZ0JWQWxPSHJFR1I=',
+                    'api_key' => 'uNbGA3tybUQhwvIo3anAOz6DZ4hIueGWm5jPN4SOkNFWAAdS',
+                    'api_secret' => '0yn5ugZpjAoqLFzaz9jztDdYtCmWUxuMoaoK4otx9Vag15yyYW0sdgBVAlOHrEGR'
+                ],
+                [
+                    'account_number' => '7W684R',
+                    'account_token' => 'Y0tBRlZkUzJRSlNzWmxTRWIwelpaNTF4SWtFRTJZVzFBTUw1d0NMZ3dBZXFiSXpZOmhRVXZ1QXlvOVBlc3o1ejVFcUxzc3d6M2hZbG04M3hMU0NPTkdQWG9FcnhPc2RjTHptajFRdDVGbFBuUXlLdjQ=',
+                    'api_key' => 'cKAFVdS2QJSsZlSEb0zZZ51xIkEE2YW1AML5wCLgwAeqbIzY',
+                    'api_secret' => 'hQUvuAyo9Pesz5z5EqLsswz3hYlm83xLSCONGPXoErxOsdcLzmj1Qt5FlPnQyKv4'
+                ],
+                [
+                    'account_number' => 'R2439A',
+                    'account_token' => '',
+                    'api_key' => '',
+                    'api_secret' => ''
+                ]
+            ]
         ]
     ],
     'ems' => [

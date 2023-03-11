@@ -59,7 +59,8 @@ $(document).on('click', '#process', function (event) {
                 quantity: $('#quantity').val(),
                 length: $('#length').val(),
                 width: $('#width').val(),
-                height: $('#height').val()
+                height: $('#height').val(),
+                ups: parseInt($('#ups').val())
             }
         },
         beforeSend: function (xhr, settings) {

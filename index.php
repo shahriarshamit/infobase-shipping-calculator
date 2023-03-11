@@ -336,8 +336,17 @@
                                 </div>
                                 <div class="form-group col-sm-8">
                                     <label for="qty" class="col-sm-2 control-label">Quantity:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" name="cal[quantity]" class="form-control" id="quantity" placeholder="Quantity" value="" />
+                                    </div>
+                                    <label for="ups" class="col-sm-3 control-label">UPS Account:</label>
+                                    <div class="col-sm-3">
+                                        <select name="cal[ups]" class="form-control" id="ups">
+                                            <option value="">Select an Account</option>
+                                            <option value="0">RMR (E974Y8)</option>
+                                            <option value="1">Import Only (7W684R)</option>
+                                            <!--<option value="2">Papers (R2439A)</option>-->
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
